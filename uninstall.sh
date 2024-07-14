@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-echo -e "\n\033[32mNerd-Font Uninstaller\033[0m\n"
+echo -e "\n\033[32mNerd Font Uninstaller\033[0m\n"
 
 echo -e "Removing all nerd fonts..."
 
