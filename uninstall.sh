@@ -10,6 +10,6 @@ if rm -rf "${HOME}"/.local/share/fonts/* ; then
 
 else
 
-  echo -e "Nerd fonts removal failed.\n"
+  echo -e "\033[0;31mNerd fonts removal failed.\033[0m\n"
 
 fi

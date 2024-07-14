@@ -9,7 +9,7 @@ readarray -t endpoints 	< \
   grep -oP '\"/ryanoasis/nerd-fonts/releases/tag/[\w\d\/\.]+\"')
 
 if [[ -z ${endpoints[*]} ]] ; then
-  echo -e "\033[0;31mLatest version not found.\033[0m"
+  echo -e "\033[0;31mLatest version not found.\033[0m\n"
   exit 
 else
   latest_version="$(echo "${endpoints[0]}" | grep -oP '(?<=tag/)v[\d\.]+')"
@@ -23,7 +23,7 @@ readarray -t download_links < \
   grep -oP "\"/ryanoasis/nerd-fonts/releases/download/${latest_version}/[\\w\\d\\.]+\"")
 
 if [[ -z ${download_links[*]} ]] ; then
-  echo -e "\033[0;31mLinks not found.\033[0m"
+  echo -e "\033[0;31mLinks not found.\033[0m\n"
   exit
 else
   echo "Fonts found:"
@@ -61,7 +61,7 @@ wget_error="$(wget -O "${compacted_filepath}" "${selected_font}" 2>&1 | grep -oP
 wait $!
 
 if [[ ${wget_error} ]] ; then
-  echo -e "\033[0;31mDownload failed! ${wget_error}\033[0m"
+  echo -e "\033[0;31mDownload failed: ${wget_error}.\033[0m\n"
   exit
 fi
 
@@ -76,6 +76,16 @@ elif [[ ${compacted_file_extention} = 'tar.'* ]] ; then
 	tar -xf "${compacted_filepath}" -C "${fonts_dirpath}"
 elif [[ ${compacted_file_extention} = 'zip' ]] ; then
 	unzip "${compacted_filepath}" -d "${fonts_dirpath}"
+else
+  echo -e "\033[0;31mCan't extract ${compacted_file_extention} file.\033[0m\n"
+  exit
 fi
 
+if [[ "${?}" -eq "0" ]] ; then
+  echo -e "Nerd font successfully installed!\n"
+else
+  echo -e "\033[0;31mFailed to extract ${compacted_filepath}.\033[0m\n"
+  exit
+fi
+  
 rm -r ${downloads_dirpath}
