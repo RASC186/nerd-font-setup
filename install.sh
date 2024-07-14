@@ -77,3 +77,5 @@ elif [[ ${compacted_file_extention} = 'tar.'* ]] ; then
 elif [[ ${compacted_file_extention} = 'zip' ]] ; then
 	unzip "${compacted_filepath}" -d "${fonts_dirpath}"
 fi
+
+rm -r ${downloads_dirpath}
