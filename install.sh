@@ -2,7 +2,11 @@
 
 echo -e "\n\033[32mNerd Font Installer\033[0m\n"
 
-echo -e "Scanning /ryanoasis/nerd-fonts repo..."
+echo -e "Installing dependencies...\n"
+
+sudo apt install curl wget tar unzip
+
+echo -e "\nScanning /ryanoasis/nerd-fonts repo..."
 
 readarray -t endpoints 	< \
  	<(curl -s 'https://github.com/ryanoasis/nerd-fonts/releases' |\
