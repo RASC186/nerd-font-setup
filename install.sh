@@ -4,7 +4,7 @@ echo -e "\n\033[32mNerd Font Installer\033[0m\n"
 
 echo -e "Installing dependencies...\n"
 
-sudo apt install curl wget tar unzip
+sudo dnf install curl wget tar unzip
 
 echo -e "\nScanning /ryanoasis/nerd-fonts repo..."
 
